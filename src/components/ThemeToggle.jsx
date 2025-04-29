@@ -1,15 +1,22 @@
+"use client";
+
 import { useTheme } from "@/hooks/useTheme";
+import { motion } from "framer-motion";
+import { Sun, Moon } from "react-feather";
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button
+    <motion.button
       onClick={toggleTheme}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-black dark:text-white hover:scale-105 transition"
+      whileTap={{ scale: 0.8 }}
+      whileHover={{ scale: 1.2 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white shadow-md hover:shadow-lg"
     >
-      {theme === "dark" ? "Light Mode" : "Dark Mode"}
-    </button>
+      {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+    </motion.button>
   );
 };
 
