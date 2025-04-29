@@ -1,52 +1,39 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Şu anlık formu sadece console log yapıyoruz
-    console.log(formData);
-    alert("Thanks for contacting us!");
-    setFormData({ name: "", email: "", message: "" });
-  };
-
   return (
-    <section id="contact" className="py-20 bg-primary text-black">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          className="text-4xl md:text-5xl font-heading text-center mb-12"
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+    <section className="flex flex-col items-center justify-center min-h-screen bg-secondary p-10">
+      <h1 className="text-5xl font-bold text-white mb-6">Contact Us</h1>
+      <motion.form
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg space-y-6"
+      >
+        <input
+          type="text"
+          placeholder="Your Name"
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-primary"
+        />
+        <input
+          type="email"
+          placeholder="Your Email"
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-primary"
+        />
+        <textarea
+          placeholder="Your Message"
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-primary"
+          rows="5"
+        ></textarea>
+        <button
+          type="submit"
+          className="w-full py-3 bg-primary text-black font-bold rounded hover:scale-105 transition"
         >
-          Contact Us
-        </motion.h2>
+          Send Message
+        </button>
+      </motion.form>
+    </section>
+  );
+};
 
-        <form
-          onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg space-y-6"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <label className="block text-gray-700 font-semibold mb-2">Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-primary"
-              placeholder="Your Name"
-            />
-          </motion
+export default ContactForm;
